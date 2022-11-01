@@ -30,11 +30,11 @@ def home():
         sources, domains = find_sources_and_domains()
         search = request.form['search']
         all_news = newsapi.get_everything(
-            q=search, 
-            sort_by='relevancy',
-            language='en', 
-            sources=sources, 
-            domains=domains
+           q=search, 
+           sort_by='relevancy',
+           language='en', 
+           sources=sources, 
+           domains=domains
         )
 
         #limit amount of articles available 
@@ -44,15 +44,14 @@ def home():
 
         #article section 
         all_articles = newsapi.get_everything(
-            q=search, 
-            language='en',
-            sort_by='relevancy',
+            q=search,
             from_param='2022-10-24',
             to='2022-11-01',
-            sources=sources, 
+            sources=sources,
             domains=domains,
-            page_size=amount_of_articles
-        )['articles']
+            language='en',
+            sort_by='relevancy',
+            page_size = amount_of_articles)['articles']
         return render_template('index.html', all_articles=all_articles, search=search)
     else:
             #get top headlines 
