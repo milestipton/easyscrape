@@ -47,6 +47,8 @@ def home():
             q=search, 
             language='en',
             sort_by='relevancy',
+            from_param='2022-10-24',
+            to='2022-11-01',
             sources=sources, 
             domains=domains,
             page_size=amount_of_articles
