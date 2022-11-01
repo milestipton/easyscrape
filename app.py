@@ -27,7 +27,7 @@ def find_sources_and_domains():
 @app.route('/', methods=['POST', 'GET'])
 def home():
     if request.method == "POST":
-        sources, domains = find_sources_and_domains
+        sources, domains = find_sources_and_domains()
         search = request.form['search']
         all_news = newsapi.get_everything(
             q=search, 
