@@ -27,11 +27,14 @@ def find_sources_and_domains():
 @app.route('/', methods=['POST', 'GET'])
 def home():
     if request.method == "POST":
+        sources, domains = find_sources_and_domains
         search = request.form['search']
         all_news = newsapi.get_everything(
             q=search, 
             sort_by='relevancy',
             language='en', 
+            sources=sources, 
+            domains=domains
         )
 
         #limit amount of articles available 
@@ -44,6 +47,8 @@ def home():
             q=search, 
             language='en',
             sort_by='relevancy',
+            sources=sources, 
+            domains=domains,
             page_size=amount_of_articles
         )['articles']
         return render_template('index.html', all_articles=all_articles, search=search)
